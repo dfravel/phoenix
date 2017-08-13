@@ -9,12 +9,17 @@ defmodule MessengyrWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :browser_session do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", MessengyrWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :browser_session]
 
     get "/", PageController, :index
 
@@ -24,6 +29,10 @@ defmodule MessengyrWeb.Router do
     # create new routes for login and landing pages
     get "/signup", PageController, :signup
     get "/login", PageController, :login
+
+    # routes for posts
+    post "/signup", PageController, :create_user
+    post "/login", PageController, :login_user
   end
 
   # Other scopes may use custom stacks.

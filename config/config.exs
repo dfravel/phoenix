@@ -17,6 +17,14 @@ config :messengyr, MessengyrWeb.Endpoint,
   pubsub: [name: Messengyr.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+# Configures the Guardian library
+config :guardian, Guardian,
+  issuer: "Messengyr",
+  ttl: { 30, :days },
+  allowed_drift: 2000,
+  secret_key: "XSnuuqPGdiI+Ox6tSWIzn96dpKXa6dOxRJf/HkyAVBpWIAv/qULpwLIjhxIDnOxt",
+  serializer: Messengyr.Accounts.GuardianSerializer
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
