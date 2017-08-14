@@ -23,16 +23,16 @@ defmodule MessengyrWeb.Router do
 
     get "/", PageController, :index
 
-    # leaving the test route in here just because
-    get "/test", PageController, :say_hello
 
-    # create new routes for login and landing pages
+    # login and signup routes
     get "/signup", PageController, :signup
     get "/login", PageController, :login
+    get "/logout", PageController, :logout
 
     # routes for posts
     post "/signup", PageController, :create_user
     post "/login", PageController, :login_user
+
   end
 
   # Other scopes may use custom stacks.

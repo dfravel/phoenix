@@ -7,8 +7,6 @@ defmodule MessengyrWeb.PageController do
   def index(conn, _params) do
     user = Guardian.Plug.current_resource(conn)
     IO.inspect user
-
-
     render conn
   end
 
@@ -54,5 +52,12 @@ defmodule MessengyrWeb.PageController do
         |> put_flash(:error, "Unable to create account!")
         |> render("signup.html", user_changeset: user_changeset)
     end
+  end
+
+  def logout(conn, _params) do
+    conn
+    |> Guardian.Plug.sign_out
+    |> put_flash(:info, "Signed out successfully")
+    |> redirect(to: "/")
   end
 end

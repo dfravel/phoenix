@@ -16,13 +16,7 @@
   <div class="container">
 
     <!-- Add this header: -->
-    <header>
-
-      <%= link "", class: "logo", to: page_path(@conn, :index) %>
-
-      <%= link "Log in", to: page_path(@conn, :login) %>
-
-    </header>
+    <%= render MessengyrWeb.LayoutView, "header.html", assigns %>
 
     <!-- The rest should be the same: -->
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
