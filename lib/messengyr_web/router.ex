@@ -33,6 +33,9 @@ defmodule MessengyrWeb.Router do
     post "/signup", PageController, :create_user
     post "/login", PageController, :login_user
 
+    #only available for logged in users
+    get "/messages", ChatController, :index
+
   end
 
   # Other scopes may use custom stacks.

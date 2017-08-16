@@ -7,7 +7,9 @@ defmodule MessengyrWeb.PageController do
   def index(conn, _params) do
     user = Guardian.Plug.current_resource(conn)
     IO.inspect user
-    render conn
+    changeset = Accounts.register_changeset()
+
+    render conn, user_changeset: changeset
   end
 
   #  leaving this one in here as an earlier example
