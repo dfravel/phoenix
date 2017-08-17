@@ -25,4 +25,10 @@ defmodule Messengyr.Accounts do
         |> validate_length(:password, min: 4)
     end
 
+    def get_user(user_id) do
+        Repo.get(User, user_id)
+    end
+
+
+
 end
